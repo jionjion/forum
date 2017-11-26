@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="${userModel.title}">welcome</title>
+</head>
+<body>
+<!-- 替换标签,将头部进行替换  文件地址 片段名字 -->
+<div th:replace="~{fragments/header :: header}">...</div>
+<!-- 获得userModel模型中的title属性值 -->
+<h3 th:text="${userModel.title}">Welcome to waylau.com</h3>
+<div>
+    <a href="/users/form.html" th:href="@{/users/form}">创建用户</a>
+</div>
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 从userModel中获得userList属性 -->
+    <tr th:if="${userModel.userList.size()} eq 0">
+        <td colspan="3">没有用户信息！！</td>
+    </tr>
+    <!-- 遍历 -->
+    <tr th:each="user : ${userModel.userList}">
+        <td th:text="${user.id}">...</td>
+        <td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
+               th:text="${user.username}">...</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 替换底部 -->
+<div th:replace="~{fragments/footer :: footer}">...</div>
+</body>
+</html>

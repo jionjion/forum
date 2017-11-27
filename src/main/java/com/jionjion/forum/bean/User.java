@@ -1,12 +1,20 @@
 package com.jionjion.forum.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author JionJion
  *	用户模型类
  */
+@Entity
 public class User {
 	
 	/**用户ID*/
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	/**用户名*/
 	private String username;

@@ -2,20 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<title th:text="${userModel.title}">users : View</title>
+	<title th:text="${userModel.title}">用户注册页面</title>
 </head>
 <body>
+	<!-- 标准头部 -->
 	<div th:replace="~{fragments/header :: header}">...</div>
-	<h3 th:text="${userModel.title}">Welcome to waylau.com</h3>
+	
+	<!-- 标题 -->
+	<h3 th:text="${userModel.title}">用户注册页面</h3>
+	
+	<!-- 返回主页 -->
 	<div>
 		<a href="/users">返回主页</a>
 	</div>
+	
+	<!-- 用户注册表单	action 指向后台相对于站点的地址	th:object 绑定数据模型 -->
 	<form action="/users" method="POST" th:object="${userModel.user}">
-		<input type="hidden" name="id" th:value="*{id}"> 
-		名称:<br>
-		<input type="text" name="name" th:value="*{username}"> <br>
+		<!-- 隐藏主键 -->
+		<input type="hidden" name="id" th:value="*{id}">
+		<!-- 其他属性 --> 
+		用户名:<input type="text" name="username" th:value="*{username}"><br>
+		<!-- 提交 -->
 		<input type="submit" value="提交">
 	</form>
+	
+	<!-- 标准底部 -->
 	<div th:replace="~{fragments/footer :: footer}">...</div>
 </body>
 </html>

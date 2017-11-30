@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>主页</title>
+</head>
+<body>
+
+<!-- 替换标签,将头部进行替换  文件地址 片段名字 -->
+<div th:replace="~{fragments/header :: header}">...</div>
+
+
+<!-- isAuthenticated():是否认证通过 -->
+<div sec:authorize="isAuthenticated()">
+	<p>已用用户登录</p>
+	<p>登录用户为:<span sec:authentication="name"></span></p>
+	<p>用户角色为:<span sec:authentication="principal.authorities"></span></p>
+</div>
+
+<!-- isAnonyous():是否匿名 -->
+<div sec:authorize="isAnonymous()">
+	<p>未有户登录</p>
+</div>
+
+
+<!-- 替换底部 -->
+<div th:replace="~{fragments/footer :: footer}">...</div>
+</body>
+</html>

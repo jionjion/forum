@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html data-th-fragment="header"
 		xmlns:th="http://www.thymeleaf.org"
-      	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>标准头部</title>
@@ -24,6 +25,18 @@
 	          <a class="nav-link active" href="/users">首页</a>
 	          <a class="nav-link" href="/users">其他</a>
 	        </nav>
+	        
+	        <div sec:authorize="isAuthenticated()" class="row">
+	        	<span sec:authentication="name">当前用户名</span>
+	        </div>
+	        <form action="/logout" th:action="@{/logout}" method="post">
+	        	<input type="submit" value="退出">
+	        </form>
+	        
+	        
+	        <div sec:authorize="isAnonymous()">
+	        	<a href="/login" th:href="@{~/login}" ></a>
+	        </div>
 		</div>
 	    </div>
     </div>

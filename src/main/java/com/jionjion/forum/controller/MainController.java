@@ -42,10 +42,25 @@ public class MainController {
 		return "login";
 	}
 	
+	/**
+	 * 	发生错误时,跳转到登录页面
+	 * @param model 模型
+	 * @return 登录页面
+	 */
 	@GetMapping("/login-error")
 	public String loginError(Model model) {
 		model.addAttribute("loginError", true);
 		model.addAttribute("errorMessage","登录失败,用户名或者密码错误");
 		return "login";
 	}
+	
+	/**
+	 * 	注册页面
+	 * @return 返回注册页面 
+	 */
+	@GetMapping("/register")
+	public String register() {
+		
+		return "register";
+	}	
 }

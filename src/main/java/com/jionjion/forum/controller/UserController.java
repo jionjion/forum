@@ -14,9 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jionjion.forum.bean.User;
 import com.jionjion.forum.repository.UserRepository;
 
+
 /**
  * @author JionJion
  *	userModel 为数据模板的名字,需要在前台显示指定数据模板
+ *	用户
  */
 @RestController
 @RequestMapping("/users")

@@ -3,28 +3,55 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<title th:text="${userModel.title}">用户注册页面</title>
+  	<!--/*-->
+  	<!--原型设计中使用-->
+  	<meta charset="UTF-8">
+  	<link rel="stylesheet" type="text/css" href="../../static/css/blog.css"/>
+  	<link rel="stylesheet" type="text/css" href="../../static/css/tether.css"/>
+  	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap-theme.css"/>
+  	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.css"/>
+  	<script src="../../static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="../../static/js/tether.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="../../static/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+  	<!--*/-->	
 </head>
-<body>
+<body class="container">
 	<!-- 标准头部 -->
-	<div th:replace="~{fragments/header :: header}">...</div>
+	<div th:replace="~{fragments/header :: header}"></div>
+	
 	<!-- 标题 -->
-	<h3 th:text="${userModel.title}">用户注册页面</h3>
+	<h3 class="text-center" th:text="${userModel.title}">用户注册页面</h3>
+	
 	<!-- 返回主页 -->
-	<div>
-		<a href="/users">返回主页</a>
+	<div class="row">
+		<div class="col-md-1">
+			<a href="../index.html" class="btn btn-primary" th:href="@{/users}">返回主页</a>
+		</div>
 	</div>
 	
 	<!-- 用户注册表单	action 指向后台相对于站点的地址	th:object 绑定数据模型 -->
-	<form action="/users" method="POST" th:object="${userModel.user}">
+	
+	<form action="form.html" method="POST" class="form-horizontal" th:action="@{/users}" th:object="${userModel.user}">
 		<!-- 隐藏主键 -->
-		<input type="hidden" name="id" th:value="*{id}">
+		<div class="form-group">
+			<input type="hidden" name="id" th:value="*{id}">
+		</div>	
 		<!-- 其他属性 --> 
-		用户名:<input type="text" name="username" th:value="*{username}"><br>
+		<div class="form-group">
+			<label for="username" class="col-md-1 control-label">用户名:</label>
+			<div class="col-md-5">
+				<input id="username" class="form-control" name="username" type="text" placeholder="用户名" th:value="*{username}">
+			</div>
+		</div>
 		<!-- 提交 -->
-		<input type="submit" value="提交">
+		<div class="form-group">
+			<div class="col-md-offset-1 col-md-10">
+				<button type="submit" class="btn btn-default">提交</button>
+			</div>
+		</div>	
 	</form>
 	
 	<!-- 标准底部 -->
-	<div th:replace="~{fragments/footer :: footer}">...</div>
+	<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

@@ -81,7 +81,7 @@
 		<dependency>
 		    <groupId>net.java.dev.jna</groupId>
 		    <artifactId>jna</artifactId>
-v  	</dependency>
+	  	</dependency>
 		
 	</dependencies>
 

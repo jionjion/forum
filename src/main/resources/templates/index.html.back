@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>      
+<head>
+    <title>主页</title>
+  	<!--/*-->
+  	<!--原型设计中使用-->
+  	<meta charset="UTF-8">
+  	<link rel="stylesheet" type="text/css" href="../static/css/blog.css"/>
+  	<link rel="stylesheet" type="text/css" href="../static/css/tether.css"/>
+  	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-theme.css"/>
+  	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css"/>
+  	<script src="../static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="../static/js/tether.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="../static/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+  	<!--*/-->	
+</head>
+<body>
+
+<!-- 替换标签,将头部进行替换  文件地址 片段名字 -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+
+<!-- isAuthenticated():是否认证通过 -->
+<div sec:authorize="isAuthenticated()">
+	<p>用户已登录</p>
+	<p>登录用户为:<span sec:authentication="name"></span></p>
+	<p>用户角色为:<span sec:authentication="principal.authorities"></span></p>
+</div>
+
+<!-- isAnonyous():是否匿名 -->
+<div sec:authorize="isAnonymous()">
+	<p>未有户登录</p>
+</div>
+
+
+<!-- 替换底部 -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

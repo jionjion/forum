@@ -3,6 +3,16 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="~{fragments/header :: header}">
+  	<!--/*-->
+  	<!--原型设计中使用-->
+  	<meta charset="UTF-8">
+  	<link rel="stylesheet" type="text/css" href="../../static/css/blog.css"/>
+  	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap-theme.css"/>
+  	<link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.css"/>
+  	<script src="../../static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="../../static/js/popper.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="../../static/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+  	<!--*/-->  	
 </head>
 <body>
 <!-- Page Content -->
@@ -15,80 +25,74 @@
 
             <!-- Blog Post -->
             <div class="card mb-4">
-                <div class="card-block">
-                    <h2 class="card-title">
-							<span>
-			                  <a href="/u/waylau" title="waylau" th:href="'/u/' + ${blogModel.user.username}"  th:title="${blogModel.user.username}" > 
-			                    <img src="/images/avatar-defualt.jpg" th:src="${blogModel.user.avatar} == null ? '/images/avatar-defualt.jpg' : ${blogModel.user.avatar}" class="blog-avatar-50">
-			                  </a>
-					        </span>
-                        <a href="/u/waylau/blogs/1" class="card-link" title="waylau" 
-                        	th:href="'/u/' + ${blogModel.user.username} + '/blogs/'+ ${blogModel.id}"  th:title="${blogModel.user.username}" th:text="${blogModel.title}">
-                            OAuth 2.0 认证的原理与实践
-                        </a>
+                    <h2 class="card-header">
+											<span>
+					                  <a href="#" th:href="'/u/' + ${blogModel.user.username}"  th:title="${blogModel.user.username}" > 
+					                    <img src="../../../../../target/classes/static/favicon.ico" width="40" th:src="${blogModel.user.avatar} == null ? '/images/avatar-defualt.jpg' : ${blogModel.user.avatar}">
+					                  </a>
+							        </span>
+	                    <a href="/u/waylau/blogs/1" class="card-link" title="waylau" 
+	                    	th:href="'/u/' + ${blogModel.user.username} + '/blogs/'+ ${blogModel.id}"  th:title="${blogModel.user.username}" th:text="${blogModel.title}">
+	                        OAuth 2.0 认证的原理与实践
+	                    </a>
                     </h2>
-                    <div class="card-text">
-                        <a href="/u/waylau" th:href="'/u/' + ${blogModel.user.username}" class="card-link" th:text="${blogModel.user.username}" >waylau</a> 发表于 [[${#dates.format(blogModel.createTime, 'yyyy-MM-dd HH:mm')}]] 
-                        	<i class="fa fa-eye" aria-hidden="true">[[${blogModel.readSize}]]</i>
-		                    <i class="fa fa-heart-o" aria-hidden="true">[[${blogModel.voteSize}]]</i> 
-		                    <i class="fa fa-comment-o" aria-hidden="true">[[${blogModel.commentSize}]]</i>
-                         <a href="/u/waylau" th:if="${isBlogOwner}" th:href="'/u/' + ${blogModel.user.username}+ '/blogs/edit/'+ ${blogModel.id}" class="btn btn-primary float-right">编辑</a>
-                         <a href="javascript:void(0)" th:if="${isBlogOwner}" class="btn btn-primary float-right blog-delete-blog">删除</a>
+                    <div class="card-body">
+                    	<p class="align-baseline d-inline">
+                        <a href="#" th:href="'/u/' + ${blogModel.user.username}" class="card-link" th:text="${blogModel.user.username}" >
+                        	JionJion
+                        </a> 
+                        	发表于 
+                        <samp th:text="${#dates.format(blogModel.createTime, 'yyyy-MM-dd HH:mm')}">2017-12-06</samp>
+                         <a href="#" th:if="${isBlogOwner}" th:href="'/u/' + ${blogModel.user.username}+ '/blogs/edit/'+ ${blogModel.id}" class="btn btn-primary btn-sm float-right mx-1">编辑</a>
+                         <a href="javascript:void(0)" th:if="${isBlogOwner}" class="btn btn-primary btn-sm float-right mx-1">删除</a>
+                      </p>
                     </div>
-                    <hr>
-                    <article class="post-content" th:utext="${blogModel.htmlContent}">
-                       
-                	</article>
-                    <hr>
-                </div>
-                <div class="card-block">
-
-
-                    <h5>分类：<a href="/u/waylau/blogs?category=11">
+                    <div class="card-body">
+	                    <article class="post-content" th:utext="${blogModel.htmlContent}">
+	                    	这是内容哔哩哔哩.... 
+	                		</article>
+                    </div>
+		                <div class="card-body">
+                    <h5>
+                    	分类：
+                    	<a href="/u/waylau/blogs?category=11">
                         Spring Data
-                    </a></h5>
-
+                    	</a>
+                    </h5>
                     <h5>标签：
-                        <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-default">Web Design</span></a>
-                        <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-default">Jersey</span></a>
-                        <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-default">JavaScript</span></a>
-                        <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-default">CSS</span></a>
-                        <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-default">Java</span></a>
-                        <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-default">Freebies</span></a>
-
+                        <a href="#" class="badge badge-primary">Web Design</span></a>
+                        <a href="#" class="badge badge-primary">Jersey</span></a>
                     </h5>
                 </div>
 
-                <div class="card-block">
+                <div class="card-body">
 
 
                     <h5>评论：</h5>
                     <div class="row">
                         <div class="col-lg-12">
-                            <textarea class="blog-textarea" placeholder="看帖需留言~" id="commentContent"></textarea>
+                        	<textarea class="form-control" rows="4" placeholder="看帖需留言~" id="commentContent"></textarea>
                         </div>
+                        <div class="col-lg-12 my-2">
+			                    <button class="btn btn-primary float-right mx-1" id="submitComment">发表评论</button>
+													<button class="btn btn-primary float-right mx-1" th:if="${currentVote} == null" id="submitVote">点赞</button>
+													<button class="btn btn-primary float-right mx-1" th:if="${currentVote}" th:attr="voteId=${currentVote.id}" id="cancelVote">取消点赞</button>
+												</div>
                     </div>
-                    <button class="btn btn-primary float-right" id="submitComment">发表评论</button>
-					<button class="btn btn-primary float-right" th:if="${currentVote} == null" id="submitVote">点赞</button>
-					<button class="btn btn-primary float-right" th:if="${currentVote}" th:attr="voteId=${currentVote.id}" id="cancelVote">取消点赞</button>
+                    
                 </div>
-                <div class="card-block" id="mainContainer">
-
-                    <div class="row" id="mainContainerRepleace" th:each="comment,commentStat : ${comments}" th:object="${comment}">
-                        <h2 class="card-title col-lg-1 col-md-2">
-							<span>
-			                  <a href="/u/waylau" th:href="'/u/'+ *{user.username}" title="waylau" th:title="*{user.username}">
-			                    <img src="/images/avatar-defualt.jpg" th:src="*{user.avatar} == null ? '/images/avatar-defualt.jpg' : *{user.avatar}" class="blog-avatar-50">
-			                  </a>
-					        </span>
-                        </h2>
-                        <div class="card-text col-lg-11 col-md-10">
-                            <a href="/u/waylau" th:href="'/u/'+ *{user.username}" class="card-link" th:text="*{user.username}">waylau</a> [[${commentStat.index} + 1]]楼  [[${#dates.format(comment.createTime, 'yyyy-MM-dd HH:mm')}]] 
-                            <a href="javascript:void(0)" class="blog-delete-comment" th:if="${commentOwner} eq *{user.username}" th:attr="commentId=*{id}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            <p th:text="*{content}">不错哦，顶起！</p>
-                        </div>
-                    </div>
-
+                <div class="border border-secondary rounded m-3">
+	                <div class="card-body" id="mainContainer">
+	                    <div class="media"  id="mainContainerRepleace" th:each="comment,commentStat : ${comments}" th:object="${comment}">
+											  <img class="mr-3" src="../../../../../target/classes/static/favicon.ico" width="30" th:src="*{user.avatar} == null ? '/images/avatar-defualt.jpg' : *{user.avatar}">
+											  <div class="media-body">
+											    <h5 class="mt-0" th:if="${commentOwner} eq *{user.username}" th:attr="commentId=*{id}">用户名</h5>
+											    <p th:text="*{content}">
+											    	不错哦
+											    </p>
+											  </div>
+											</div>
+	                </div>
                 </div>
             </div>
 
@@ -98,13 +102,15 @@
         <div class="col-md-4">
             <div>
                 <!-- 文章目录 -->
-                <div class="card ">
-                    <h5 class="card-header"><i class="fa fa-bars" aria-hidden="true"></i> 文章目录</h5>
-                    <div class="card-block">
-                        <div class="row">
-                            <div id="catalog" class="col-lg-12"></div>
-                        </div>
-                    </div>
+                <div class="card">
+                    <h5 class="card-header">文章目录</h5>
+                    <ul class="list-group list-group-flush">
+                    	<li class="list-group-item">
+                    		<a href="#">
+                    			Night代理
+                    		</a>
+                    	</li>
+                    </ul>
                 </div>
 
 
@@ -113,22 +119,11 @@
                     <h5 class="card-header"><i class="fa fa-connectdevelop" aria-hidden="true"></i> 相关博客</h5>
                     <div class="list-group">
                         <ul class="list-group">
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
+                        	<li class="list-group-item">
+                            <a href="#" title="waylau">
                                 Spring Data + Thymeleaf 3 + Bootstrap 4 实现分页器
                             </a>
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                用大白话聊聊分布式系统
-                            </a>
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                用大白话聊聊分布式系统>
-                            </a>
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                使用 Eclipse Checkstyle Plugin
-                            </a>
-
-                            <a href="/u/waylau/blogs/1" class="list-group-item" title="waylau">
-                                使用 Eclipse Checkstyle Plugin
-                            </a>
+                        	</li>
                         </ul>
                     </div>
 
@@ -147,10 +142,10 @@
 <div th:replace="~{fragments/footer :: footer}">...</div>
 
 <!-- JavaScript -->
-<script th:inline="javascript">
+<!--<script th:inline="javascript">
 var blogId = [[${blogModel.id}]];
 var blogUrl = '/u/' + [[${blogModel.user.username}]] + '/blogs/'+ [[${blogModel.id}]] ;
 </script>
-<script src="../../js/userspace/blog.js" th:src="@{/js/userspace/blog.js}"></script>
+<script src="../../js/userspace/blog.js" th:src="@{/js/userspace/blog.js}"></script>-->
 </body>
 </html>

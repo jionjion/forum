@@ -1,9 +1,6 @@
 ---
-
-title: 博客系统开发文档
-date: 2017-09-23 12:51:53
-tags: Building
-
+title : 博客系统开发文档
+tags : Building
 ---
 ----
 

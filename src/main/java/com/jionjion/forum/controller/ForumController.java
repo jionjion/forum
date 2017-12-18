@@ -16,8 +16,8 @@ import com.jionjion.forum.bean.EsForum;
 import com.jionjion.forum.repository.EsForumRepository;
 
 /**
- * @author JionJion
  * 	论坛的控制器
+ * @author JionJion
  */
 @RestController
 @RequestMapping("/forum")

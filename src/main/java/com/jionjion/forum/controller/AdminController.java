@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * @author JionJion
  *	管理员访问控制器
+ * @author JionJion
  */
 @RestController
 public class AdminController {

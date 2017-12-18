@@ -25,7 +25,8 @@
     <link type="text/css" href="../../static/css/blog.css" th:href="@{/css/blog.css}" rel="stylesheet">
 </head>
 	<body>
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<div style="background-color:rgb(52, 58, 64);">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark container">
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -39,12 +40,12 @@
 		        <a class="nav-link" href="#">图床</a>
 		      </li>
 		    </ul>
-		    <form class="form-inline p-3">
+		    <form class="form-inline">
 		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
 		    </form>
 		    
-            <div class="form-inline p-3" sec:authorize="isAuthenticated()">
+            <div class="form-inline" sec:authorize="isAuthenticated()">
 				<div class="btn-group" role="group">
 				    <button id="btnGroupDrop1" type="button" class="btn btn-dark dropdown-toggle btn-outline-success" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				      <samp>用户名</samp>
@@ -59,12 +60,13 @@
 				</form>-->
             </div>
             
-		    <form class="form-inline p-3" th:action="@{/logout}">
+		    <form class="form-inline" th:action="@{/logout}">
 				<a href="#" th:href="@{~/login}" class="bg-white  rounded-circle">
 					<img src="../../static/feather/user.svg"/>
 				</a>		    	
 		    </form>		    
 		  </div>
-		</nav>		
+		</nav>
+		</div>
 	</body>
 </html>

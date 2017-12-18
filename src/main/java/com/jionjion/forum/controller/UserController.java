@@ -16,9 +16,8 @@ import com.jionjion.forum.repository.UserRepository;
 
 
 /**
- * @author JionJion
  *	userModel 为数据模板的名字,需要在前台显示指定数据模板
- *	用户
+ * @author JionJion
  */
 @RestController
 @RequestMapping("/users")
@@ -70,7 +69,8 @@ public class UserController {
 		return new ModelAndView("users/form", "userModel",model);
 	}
 	
-	/**	保存或者更新用户.
+	/**	
+	 * 保存或者更新用户.
 	 * @param user
 	 * @return
 	 */

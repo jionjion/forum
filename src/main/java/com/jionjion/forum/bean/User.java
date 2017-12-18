@@ -1,9 +1,13 @@
 package com.jionjion.forum.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author JionJion
@@ -16,15 +20,28 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
 	/**用户名*/
+	@NotEmpty(message="用户名不能为空!")
+	@Size(min=3,max=20)
+	@Column(nullable=false,length=30)	//字段设置
 	private String username;
+	
 	/**用户密码*/
+	@NotEmpty(message="密码不能为空!")
+	@Size(min=6,max=20)
+	@Column(nullable=false,length=30)	//字段设置	
 	private String password;
+	
 	/**用户邮箱*/
 	private String email;
+	
 	/**联系电话*/
 	private String telephone;
-
+	
+	/**头像信息*/
+	private String headImage;
+	
 	public Long getId() {
 		return id;
 	}
@@ -78,9 +95,18 @@ public class User {
 		this.telephone = telephone;
 	}
 
+	
+	public String getHeadImage() {
+		return headImage;
+	}
+
+	public void setHeadImage(String headImage) {
+		this.headImage = headImage;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", telephone=" + telephone + "]";
+				+ ", telephone=" + telephone + ", headImage=" + headImage + "]";
 	}
 }

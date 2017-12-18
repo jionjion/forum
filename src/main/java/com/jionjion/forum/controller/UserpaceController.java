@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author JionJion
  * 用户空间访问控制器
+ * @author JionJion
  */
 @RestController
 @RequestMapping("/user")
@@ -25,7 +25,7 @@ public class UserpaceController {
 	 * @return			用户空间
 	 */
 	@RequestMapping("/{username}")
-	public String userSpace(@PathParam(value="username") String username) {
+	public String userSpace(@PathVariable(value="username") String username) {
 		System.out.println("访问用户空间:" + username);
 		return "/users/userspace";
 	}
@@ -61,17 +61,22 @@ public class UserpaceController {
 	}
 	
 	/**
+	 * 	访问某人的留言
 	 * @param id	留言ID
 	 * @return		留言页面
 	 */
 	@GetMapping(value="/{username}/forums/{id}")
 	public String listForumsByOrder(@PathVariable(value="id") Long id) {
 		System.out.println("获得留言ID" + id);
-		return "/users/forums";
+		return "/userspace/blog";
 	}
 	
+	/**
+	 * 	编辑留言内容
+	 * @return
+	 */
 	public String editForum() {
 		
-		return "/users/forumsedit";
+		return "/userspace/blogedit";
 	}
 }

@@ -9,13 +9,14 @@
 	<packaging>jar</packaging>
 
 	<name>forum</name>
-	<description>create forum  for our friends</description>
+	<description>create forum for our friends</description>
 
+	<!-- lookup parent from repository -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.8.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> 
 	</parent>
 
 	<!-- 自定义版本,编译,环境 -->
@@ -82,7 +83,6 @@
 		    <groupId>net.java.dev.jna</groupId>
 		    <artifactId>jna</artifactId>
 	  	</dependency>
-		
 	</dependencies>
 
 	<build>

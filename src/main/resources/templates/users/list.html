@@ -16,10 +16,11 @@
   	<!--*/-->
   	
 </head>
-<!--瀑布流布局-->
-<body class="container">
 <!-- 替换标签,将头部进行替换  文件地址 片段名字 -->
-<div th:replace="~{fragments/header :: header}"></div>
+<!-- <div th:replace="~{fragments/header :: header}"></div> -->
+<body>
+<div class="container">
+
 
 <!-- 获得userModel模型中的title属性值 -->
 <h3 class="text-center" th:text="${userModel.title}">用户列表</h3>
@@ -27,7 +28,7 @@
 <!-- 跳转到创建用户页面 -->
 <div class="row">
 <div class="col-md-1 col-md-offset-11">
-	<a href="form.html" class="btn btn-primary" th:href="@{/users/form}">创建用户</a>
+	<a href="form.html" class="btn btn-primary" th:href="@{~/register}">创建用户</a>
 </div>
 </div>
 
@@ -60,7 +61,8 @@
 			</tbody>
 		</table>
 	</div>
+</div>	
 	<!-- 替换底部 -->
-	<div th:replace="~{fragments/footer :: footer}"></div>
+	<!-- <div th:replace="~{fragments/footer :: footer}"></div> -->
 </body>
 </html>

@@ -11,7 +11,6 @@ import org.apache.commons.lang.StringUtils;
 /**
  * 	异常处理的工具类
  * @author JionJion
- *
  */
 public class ConstraintViolationExceptionHandler {
 

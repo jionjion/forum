@@ -14,9 +14,11 @@
   	<script src="../../static/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
   	<!--*/-->
 </head>
-<body class="container">
-	<!-- 标准头部 -->
-	<div th:replace="~{fragments/header :: header}"></div>
+<!-- 标准头部 -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<body>
+<div class="container">
 	
 	<!-- 标题 -->
 	<h3 class="text-center" th:text="${userModel.title}">用户信息页面</h3>
@@ -62,7 +64,8 @@
 		<a href="#" class="btn btn-danger" th:href="@{'/users/delete/' + ${userModel.user.id}}">删除 </a>
 	</div>
 	
-	<!-- 标准底部 -->
-	<div th:replace="~{fragments/footer :: footer}"></div>
+</div>	
 </body>
+<!-- 标准底部 -->
+<div th:replace="~{fragments/footer :: footer}"></div>
 </html>

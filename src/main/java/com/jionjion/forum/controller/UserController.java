@@ -34,7 +34,7 @@ public class UserController {
  		return userRepository.findAll();
 	}	
 	
-	/**	查询所有用户
+	/**	查询所有用户,默认显示
 	 * @param model
 	 * @return
 	 */
@@ -77,6 +77,7 @@ public class UserController {
 	@PostMapping
 	public ModelAndView create(User user) {
  		user = userRepository.save(user);
+ 		System.out.println(user);
 		return new ModelAndView("redirect:/users");
 	}
 

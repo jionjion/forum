@@ -23,13 +23,13 @@ public class User {
 	
 	/**用户名*/
 	@NotEmpty(message="用户名不能为空!")
-	@Size(min=3,max=20)
+	@Size(min=2,max=20)
 	@Column(nullable=false,length=30)	//字段设置
 	private String username;
 	
 	/**用户密码*/
 	@NotEmpty(message="密码不能为空!")
-	@Size(min=6,max=20)
+	@Size(min=2,max=20)
 	@Column(nullable=false,length=30)	//字段设置	
 	private String password;
 	

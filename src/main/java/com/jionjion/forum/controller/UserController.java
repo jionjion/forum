@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jionjion.forum.bean.User;
 import com.jionjion.forum.repository.UserRepository;
+import com.jionjion.forum.server.AuthorityService;
 
 
 /**
@@ -23,8 +24,13 @@ import com.jionjion.forum.repository.UserRepository;
 @RequestMapping("/users")
 public class UserController {
 
+	/**用户对象服务*/
 	@Autowired
 	private UserRepository userRepository;
+	
+	/**权限对象服务*/
+	@Autowired
+	private AuthorityService authorityService;
 	
 	/**
 	 * 从 用户存储库 获取用户列表

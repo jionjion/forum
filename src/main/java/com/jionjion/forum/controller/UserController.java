@@ -44,7 +44,7 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping
+	@GetMapping
 	public ModelAndView list(Model model) {
 		model.addAttribute("userList",getUserlist());
 		model.addAttribute("title","用户管理");
@@ -84,7 +84,7 @@ public class UserController {
 	public ModelAndView create(User user) {
  		user = userRepository.save(user);
  		System.out.println(user);
-		return new ModelAndView("redirect:/users");
+		return new ModelAndView("redirect:/admins");
 	}
 
 	/**

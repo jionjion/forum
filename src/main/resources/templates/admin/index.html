@@ -24,7 +24,6 @@
         <!-- 左侧栏目 -->
         <div class="col-md-4 col-xl-3">
 
-            
 	      <!-- 分类 -->
 	        <div class="card">
 	            <h5 class="card-header"><i class="fa fa-bars" aria-hidden="true"></i> 菜单</h5>
@@ -52,6 +51,10 @@
 <!-- 标准底部 -->
 <div th:replace="~{fragments/footer :: footer}">...</div>
 
+<!-- 菜单管理JS -->
 <script src="../../js/admin.js" type="text/javascript" charset="utf-8" th:src="@{/js/admin.js}"></script>
+<!-- 用户管理JS -->
+<script src="../../js/users.js" type="text/javascript" charset="utf-8" th:src="@{/js/users.js}"></script>
+
 </body>
 </html>

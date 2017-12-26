@@ -16,8 +16,6 @@
   	<!--*/-->
   	
 </head>
-<!-- 替换标签,将头部进行替换  文件地址 片段名字 -->
-<!-- <div th:replace="~{fragments/header :: header}"></div> -->
 <body>
 <div class="container">
 
@@ -28,13 +26,14 @@
 <!-- 跳转到创建用户页面 -->
 <div class="row">
 <div class="col-md-1 col-md-offset-11">
-	<a href="form.html" class="btn btn-primary	" th:href="@{~/register}">创建用户</a>
+	<a href="javascript:void(0)" id="register_btn" class="btn btn-primary">创建用户</a>
 </div>
 </div>
+<br>
 
 	<!-- 用户列表 -->
 	<div class="row">
-		<table class="table table-bordered table-hover">
+		<table class="table table-bordered table-hover" id="users_list_table">
 			<!-- 用户信息头 -->
 			<thead>
 				<tr class="active">
@@ -55,14 +54,51 @@
 					<td th:text="${user.id}">用户ID</td>
 					<td>
 						<!-- 点击链接,访问用户页面 -->
-						<a href="view.html" th:href="@{'/users/' + ${user.id}}" th:text="${user.username}">用户姓名</a>
+						<a href="Javascript:void(0)" th:url="@{'/users/' + ${user.id}}" th:text="${user.username}">用户姓名</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>	
-	<!-- 替换底部 -->
-	<!-- <div th:replace="~{fragments/footer :: footer}"></div> -->
+<script type="text/javascript">
+	//点击创建用户按钮
+	$('#register_btn').click(function(){
+		
+		$.ajax({
+			type:"get",
+			url:'/register',
+			async:true ,
+			success:function(data){
+				$("#rightContainer").html(data);
+			},
+			error:function(){
+				alert("加载失败");
+			}
+		});
+	});
+
+	//点击用户名,进入详情页
+	$('#users_list_table').click(function(e){
+
+		debugger;
+		var url = e.target.getAttribute('url');
+		if(!url){
+			return;
+		}
+		$.ajax({
+			type:"get",
+			url:url,
+			async:true ,
+			success:function(data){
+				$("#rightContainer").html(data);
+			},
+			error:function(){
+				alert("加载失败");
+			}
+		});		
+	});
+	
+</script>
 </body>
 </html>

@@ -17,10 +17,6 @@
   	<script src="../static/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
   	<!--*/-->	
 </head>
-
-<!-- 替换标签,将头部进行替换  文件地址 片段名字 -->
-<div th:replace="~{fragments/header :: header}"></div>
-
     <body>
 		<div class="container blog-content-container">
 		
@@ -49,13 +45,16 @@
 				<div class="row">
 					<div class="form-group col-md-5 col-md-offset-3">
 						<label class="col-form-label"></label>
-						<button type="submit" class="btn btn-block btn-primary">提交</button>
+						<button type="button" class="btn btn-block btn-primary" id="register_btn">提交</button>
 					</div>
 				</div>
 			</form>
 		</div>
-	
-<!-- 替换底部 -->
-<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
+<script type="text/javascript">
+$('#register_btn').click(function(){
+	debugger;
+	$(this).parents('form')[0].submit();
+});
+</script>
 </html>

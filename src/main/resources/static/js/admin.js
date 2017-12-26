@@ -4,12 +4,9 @@
 
 ***/
 $(function(){
-	debugger;
 	//搜索
 	$(".card .list-group-item").click(function(e){
 		
-		debugger;
-		console.log($(this).value);
 		
 		//移除样式
 		$(".list-group-item").removeClass("active");

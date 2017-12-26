@@ -21,6 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/css/**","/js/**","/fonts/**","/index","/feather/**").permitAll()	//都可以访问
 			.antMatchers("/users/**").hasRole("ADMIN") 		//需要对应角色访问
 			.and()
+			.headers().frameOptions().sameOrigin()			//允许同域名下加载页面,图标
+			.and()
 			.formLogin()	//基于表单的验证
 			.loginPage("/login")	//登录表单
 			.failureUrl("/login-error");	//登录失败页面

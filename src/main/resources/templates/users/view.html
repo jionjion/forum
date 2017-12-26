@@ -14,8 +14,6 @@
   	<script src="../../static/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
   	<!--*/-->
 </head>
-<!-- 标准头部 -->
-<div th:replace="~{fragments/header :: header}"></div>
 
 <body>
 <div class="container">
@@ -26,7 +24,7 @@
 	<!-- 返回主页 -->
 	<div class="row">
 		<div class="col-md-1">
-			<a href="../index.html" class="btn btn-primary" th:href="@{/users}">返回主页</a>
+			<a href="javascript:void(0)" class="btn btn-primary" th:url="@{/users}">返回主页</a>
 		</div>
 	</div>
 	
@@ -60,12 +58,27 @@
 
 	<div>
 		<!-- 请求链接,使用 @{链接地址},相对于站点指向后台 -->
-		<a href="#" class="btn btn-primary" th:href="@{'/users/modify/' + ${userModel.user.id}}">修改</a>
-		<a href="#" class="btn btn-danger" th:href="@{'/users/delete/' + ${userModel.user.id}}">删除 </a>
+		<a href="javascript:void(0)" class="btn btn-primary" th:url="@{'/users/modify/' + ${userModel.user.id}}">修改</a>
+		<a href="javascript:void(0)" class="btn btn-danger" th:url="@{'/users/delete/' + ${userModel.user.id}}">删除 </a>
 	</div>
 	
 </div>	
 </body>
-<!-- 标准底部 -->
-<div th:replace="~{fragments/footer :: footer}"></div>
+<script type="text/javascript">
+	$('.btn').click(function(){
+		debugger;
+		var url = $(this)[0].getAttribute('url');
+		$.ajax({
+			type:"get",
+			url:url,
+			async:true ,
+			success:function(data){
+				$("#rightContainer").html(data);
+			},
+			error:function(){
+				alert("加载失败");
+			}
+		});		
+	});
+</script>
 </html>

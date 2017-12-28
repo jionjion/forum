@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
@@ -25,7 +28,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  *	用户模型类
  */
 @Entity
-public class User /*implements UserDetails*/{
+public class User implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -56,10 +59,10 @@ public class User /*implements UserDetails*/{
 	private String headImage;
 	
 	/**用户权限关系*/
-//	@ManyToOne
-//	@JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
-//		inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))	
-//	private List<Authority> authorities;
+	@ManyToMany(cascade=CascadeType.DETACH , fetch=FetchType.EAGER)
+	@JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
+		inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))	
+	private List<Authority> authorities;
 	
 	public Long getId() {
 		return id;
@@ -128,8 +131,8 @@ public class User /*implements UserDetails*/{
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", telephone=" + telephone + ", headImage=" + headImage + "]";
 	}
-/*
-	*//** 获取权限信息*//*
+
+	/** 获取权限信息*/
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		//将自定义的权限对象转为SimpleGrantedAuthority
 		List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
@@ -140,27 +143,27 @@ public class User /*implements UserDetails*/{
  		return simpleGrantedAuthorities;
 	}
 
-	*//** 是否账号没有过期*//*
+	/** 是否账号没有过期*/
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
 
-	*//** 是否账号没有被锁*//*
+	/** 是否账号没有被锁*/
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
 
-	*//** 是否账号被没有被冻结*//*
+	/** 是否账号被没有被冻结*/
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
-	*//** 是否账号可用*//*
+	/** 是否账号可用*/
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}*/
+	}
 }

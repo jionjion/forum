@@ -52,4 +52,24 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByUsernameLike(username, pageable);
 	}
 
+	@Override
+	public Iterable<User> findAll() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public User findOne(Long id) {
+		return userRepository.findOne(id);
+	}
+
+	@Override
+	public User save(User user) {
+		return userRepository.save(user);
+	}
+
+	@Override
+	public void delete(Long id) {
+		userRepository.delete(id);
+	}
+
 }

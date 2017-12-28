@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jionjion.forum.bean.User;
-import com.jionjion.forum.repository.UserRepository;
 import com.jionjion.forum.server.AuthorityService;
+import com.jionjion.forum.server.UserService;
 
 
 /**
@@ -26,7 +26,7 @@ public class UserController {
 
 	/**用户对象服务*/
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	/**权限对象服务*/
 	@Autowired
@@ -37,7 +37,7 @@ public class UserController {
 	 * @return
 	 */
 	private Iterable<User> getUserlist() {
- 		return userRepository.findAll();
+ 		return userService.findAll();
 	}	
 	
 	/**	查询所有用户,默认显示
@@ -58,7 +58,7 @@ public class UserController {
 	 */
 	@GetMapping("{id}")
 	public ModelAndView view(@PathVariable("id") Long id , Model model) {
-		User user = userRepository.findOne(id);
+		User user = userService.findOne(id);
 		model.addAttribute("user",user);
 		model.addAttribute("title","查看用户");
 		return new ModelAndView("users/view", "userModel",model);
@@ -82,7 +82,7 @@ public class UserController {
 	 */
 	@PostMapping
 	public ModelAndView create(User user) {
- 		user = userRepository.save(user);
+ 		user = userService.save(user);
  		System.out.println(user);
 		return new ModelAndView("redirect:/admins");
 	}
@@ -94,7 +94,7 @@ public class UserController {
 	 */
 	@GetMapping(value = "delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id, Model model) {
-		userRepository.delete(id);
+		userService.delete(id);
 		model.addAttribute("userList", getUserlist());
 		model.addAttribute("title", "删除用户");
 		return new ModelAndView("users/list", "userModel", model);
@@ -107,7 +107,7 @@ public class UserController {
 	 */
 	@GetMapping(value = "modify/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
-		User user = userRepository.findOne(id);
+		User user = userService.findOne(id);
  
 		model.addAttribute("user", user);
 		model.addAttribute("title", "修改用户");

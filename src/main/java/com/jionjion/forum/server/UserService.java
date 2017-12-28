@@ -41,5 +41,17 @@ public interface UserService {
 	 * @return	分页后的用户信息列表
 	 */
 	Page<User> listUsersByUsernameLike(String username,Pageable pageable);
+
+
+	Iterable<User> findAll();
+
+
+	User findOne(Long id);
+
+
+	User save(User user);
+
+
+	void delete(Long id);
 	
 }

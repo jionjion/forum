@@ -5,6 +5,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.jionjion.forum.bean.User;
@@ -12,7 +15,7 @@ import com.jionjion.forum.repository.UserRepository;
 import com.jionjion.forum.server.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService , UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -70,6 +73,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(Long id) {
 		userRepository.delete(id);
+	}
+
+	/**
+	 * 	根据用户账号加载相应用户信息
+	 */
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
+		return userRepository.findByUsername(username);
 	}
 
 }

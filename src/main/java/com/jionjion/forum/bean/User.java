@@ -64,6 +64,7 @@ public class User implements UserDetails{
 		inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))	
 	private List<Authority> authorities;
 	
+
 	public Long getId() {
 		return id;
 	}
@@ -142,7 +143,11 @@ public class User implements UserDetails{
 		}
  		return simpleGrantedAuthorities;
 	}
-
+	
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+	
 	/** 是否账号没有过期*/
 	@Override
 	public boolean isAccountNonExpired() {

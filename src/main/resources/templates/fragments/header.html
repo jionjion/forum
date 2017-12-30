@@ -5,7 +5,11 @@
       	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
+    <!-- Bootstrap的媒体查询标签 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 默认的头部,针对X-CSRF-KOKEN,让页面携带,由Spring Security实现 -->
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>标准头部</title>
   	<!--/*-->
   	<!--原型设计中使用-->

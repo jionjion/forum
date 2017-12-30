@@ -2,7 +2,13 @@ package com.jionjion.forum.controller;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,9 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jionjion.forum.bean.Authority;
 import com.jionjion.forum.bean.User;
+import com.jionjion.forum.exception.ConstraintViolationExceptionHandler;
 import com.jionjion.forum.server.AuthorityService;
 import com.jionjion.forum.server.UserService;
+import com.jionjion.forum.vo.Response;
 
 
 /**
@@ -33,7 +42,7 @@ public class UserController {
 	private AuthorityService authorityService;
 	
 	/**
-	 * 从 用户存储库 获取用户列表
+	 * 从用户存储库 获取用户列表
 	 * @return
 	 */
 	private Iterable<User> getUserlist() {
@@ -76,15 +85,23 @@ public class UserController {
 	}
 	
 	/**	
-	 * 保存或者更新用户.
+	 * 保存或者更新用户
+	 * 返回信息为JSON字符对象,不能作为页面显示.
 	 * @param user
 	 * @return
 	 */
 	@PostMapping
-	public ModelAndView create(User user) {
- 		user = userService.save(user);
- 		System.out.println(user);
-		return new ModelAndView("redirect:/admins");
+	public ResponseEntity<Response> create(User user,Long authorityId) {
+		//权限列表的加入
+		List<Authority> authorities = new ArrayList<Authority>();
+		authorities.add(authorityService.getAuthorityById(authorityId));
+		user.setAuthorities(authorities);
+		try {
+			user = userService.save(user);
+		} catch (ConstraintViolationException e) {
+			return ResponseEntity.ok().body(new Response(false,ConstraintViolationExceptionHandler.getMessage(e),null));
+		}
+		return ResponseEntity.ok().body(new Response(true,"保存成功",user));
 	}
 
 	/**

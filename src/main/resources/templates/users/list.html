@@ -39,6 +39,7 @@
 				<tr class="active">
 					<td>用户ID</td>
 					<td>用户名</td>
+					<td>权限</td>
 				</tr>
 			</thead>
 			<!-- 用户信息行 -->
@@ -56,12 +57,19 @@
 						<!-- 点击链接,访问用户页面 -->
 						<a href="Javascript:void(0)" th:url="@{'/users/' + ${user.id}}" th:text="${user.username}">用户姓名</a>
 					</td>
+					<td th:text="${user.authorities}">权限ID</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>	
 <script type="text/javascript">
+
+	//token的获取,否则安全认证不通过
+	var csrfToken = $("meta[name='_csrf']").attr("content");	//JQuery选择器
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");	
+	console.log("令牌" + csrfToken + "认证头信息" + csrfHeader);
+
 	//点击创建用户按钮
 	$('#register_btn').click(function(){
 		
@@ -90,6 +98,9 @@
 			type:"get",
 			url:url,
 			async:true ,
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeader, csrfToken);
+			},
 			success:function(data){
 				$("#rightContainer").html(data);
 			},

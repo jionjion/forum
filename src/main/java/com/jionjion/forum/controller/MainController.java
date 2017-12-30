@@ -1,8 +1,17 @@
 package com.jionjion.forum.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.jionjion.forum.bean.Authority;
+import com.jionjion.forum.bean.User;
+import com.jionjion.forum.server.AuthorityService;
+import com.jionjion.forum.server.UserService;
 
 /**
  * @author JionJion
@@ -11,6 +20,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
+	/** 用户权限ID*/
+	private static final Long ROLE_USER_AUTHORITY_ID = 2L;
+
+	@Autowired
+	private AuthorityService authorityService;
+	
+	@Autowired
+	private UserService userService;
+	
 	/**
 	 * 	跳转主页
 	 * @return 重定向到主页
@@ -63,4 +81,17 @@ public class MainController {
 		
 		return "register";
 	}	
+	
+	/**
+	 * 	注册用户链接
+	 * @param user 	用户信息
+	 * @return		跳转登录页面
+	 */
+	public String registerUser(User user) {
+		List<Authority> authorities = new ArrayList<Authority>();
+		authorities.add(authorityService.getAuthorityById(ROLE_USER_AUTHORITY_ID));
+		user.setAuthorities(authorities);
+		userService.registerUser(user);
+		return "redirect:/login";
+	}
 }

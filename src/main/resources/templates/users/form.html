@@ -46,6 +46,14 @@
 				<input id="password" class="form-control" name="password" type="text" placeholder="密码" th:value="*{password}">
 			</div>
 		</div>		
+		<!-- 角色选择 -->
+		<div class="form-group">
+			<label for="authorities" class="col-form-label">角色</label>
+	  		<select id="authorities" name="authorityId" class="form-control form-control-chosen" data-placeholder="请选择">
+			  <option value="1" data-th-selected="${#strings.contains(userModel.user.authorities[0],'ROLE_ADMIN')}">管理员</option>
+			  <option value="2" data-th-selected="${#strings.contains(userModel.user.authorities[0],'ROLE_USER')}">博主</option>
+			</select>
+		</div>		
 		<!-- 提交 -->
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-10">
